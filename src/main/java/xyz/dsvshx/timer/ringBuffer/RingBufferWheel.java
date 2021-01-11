@@ -16,10 +16,7 @@ import java.util.concurrent.locks.ReentrantLock;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
-/**
- * @author dongzhonghua <dongzhonghua03@kuaishou.com>
- * Created on 2021-01-09
- */
+
 public final class RingBufferWheel {
 
     private final Logger logger = LoggerFactory.getLogger(RingBufferWheel.class);
