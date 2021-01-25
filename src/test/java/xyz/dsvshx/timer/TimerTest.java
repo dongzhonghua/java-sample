@@ -3,7 +3,7 @@ package xyz.dsvshx.timer;
 import org.junit.jupiter.api.Test;
 
 /**
- * @author dongzhonghua <dongzhonghua03@kuaishou.com>
+ * @author dongzhonghua
  * Created on 2021-01-09
  */
 class TimerTest {
