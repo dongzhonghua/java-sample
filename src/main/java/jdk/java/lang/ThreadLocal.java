@@ -274,7 +274,7 @@ public class ThreadLocal<T> {
      */
     static final class SuppliedThreadLocal<T> extends ThreadLocal<T> {
 
-        private final Supplier<? extends T> supplier;
+        private final Supplier<? extends T> supplier; // 这种到底和直接传值好在哪里？
 
         SuppliedThreadLocal(Supplier<? extends T> supplier) {
             this.supplier = Objects.requireNonNull(supplier);
