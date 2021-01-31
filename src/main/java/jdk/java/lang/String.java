@@ -44,8 +44,8 @@ import java.util.regex.PatternSyntaxException;
  * string literals in Java programs, such as {@code "abc"}, are
  * implemented as instances of this class.
  * <p>
- * Strings are constant; their values cannot be changed after they
- * are created. String buffers support mutable strings.
+ * Strings are constant; their values cannot be changed after they 一旦创建不可变化
+ * are created. String buffers support mutable可变的 strings.
  * Because String objects are immutable they can be shared. For example:
  * <blockquote><pre>
  *     String str = "abc";
@@ -73,7 +73,7 @@ import java.util.regex.PatternSyntaxException;
  * <p>
  * The Java language provides special support for the string
  * concatenation operator (&nbsp;+&nbsp;), and for conversion of
- * other objects to strings. String concatenation is implemented
+ * other objects to strings. String concatenation串联 is implemented
  * through the {@code StringBuilder}(or {@code StringBuffer})
  * class and its {@code append} method.
  * String conversions are implemented through the method
@@ -111,12 +111,17 @@ import java.util.regex.PatternSyntaxException;
 public final class String
     implements java.io.Serializable, Comparable<String>, CharSequence {
     /** The value is used for character storage. */
+    // 底层是一个数组
     private final char value[];
 
     /** Cache the hash code for the string */
+    // hash有什么用？
     private int hash; // Default to 0
 
-    /** use serialVersionUID from JDK 1.0.2 for interoperability */
+    /**
+     * use serialVersionUID from JDK 1.0.2 for interoperability
+     * 序列化时候的版本号，用来识别版本号变化导致的序列化或反序列化不成功
+     * */
     private static final long serialVersionUID = -6849794470754667710L;
 
     /**
@@ -125,6 +130,7 @@ public final class String
      * A String instance is written into an ObjectOutputStream according to
      * <a href="{@docRoot}/../platform/serialization/spec/output.html">
      * Object Serialization Specification, Section 6.2, "Stream Elements"</a>
+     * ObjectStreamFields的数组用于声明一个类的Serializable字段
      */
     private static final ObjectStreamField[] serialPersistentFields =
         new ObjectStreamField[0];
@@ -204,6 +210,7 @@ public final class String
         if (offset > value.length - count) {
             throw new StringIndexOutOfBoundsException(offset + count);
         }
+        // 最后是个native方法
         this.value = Arrays.copyOfRange(value, offset, offset+count);
     }
 
@@ -235,6 +242,8 @@ public final class String
      *
      * @since  1.5
      */
+    // 这些乱七八糟的条件判断等等都是需要学习的东西，之前百度面试让我去写string转int。
+    // 最后我就写出来了整体的功能，但是没有边界条件和异常等等。对于一个看过源码的老司机可能一眼就能看出我的水平了。
     public String(int[] codePoints, int offset, int count) {
         if (offset < 0) {
             throw new StringIndexOutOfBoundsException(offset);
@@ -248,7 +257,7 @@ public final class String
                 return;
             }
         }
-        // Note: offset or count might be near -1>>>1.
+        // Note: offset or count might be near -1>>>1.  -1>>>1 = 2147483647 无符号左移
         if (offset > codePoints.length - count) {
             throw new StringIndexOutOfBoundsException(offset + count);
         }
@@ -1150,6 +1159,7 @@ public final class String
      *          value greater than {@code 0} if this string is
      *          lexicographically greater than the string argument.
      */
+    // 比较两个的字典序。
     public int compareTo(String anotherString) {
         int len1 = value.length;
         int len2 = anotherString.value.length;
@@ -1166,6 +1176,7 @@ public final class String
             }
             k++;
         }
+        // 这一步还是比较优秀的
         return len1 - len2;
     }
 
