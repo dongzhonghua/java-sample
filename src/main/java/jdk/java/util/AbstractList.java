@@ -67,7 +67,7 @@ package java.util;
  * @author  Neal Gafter
  * @since 1.2
  */
-
+// 使用模版方法，把需要实现的功能流程定义好了
 public abstract class AbstractList<E> extends AbstractCollection<E> implements List<E> {
     /**
      * Sole constructor.  (For invocation by subclass constructors, typically
