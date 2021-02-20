@@ -1,4 +1,4 @@
-package xyz.dsvshx.threadPool;
+package xyz.dsvshx.concurrent.threadPool;
 
 import java.util.ArrayList;
 import java.util.Iterator;

@@ -34,6 +34,7 @@ import java.util.function.BiConsumer;
 import java.util.function.BiFunction;
 import java.util.function.Consumer;
 import java.util.function.Function;
+
 import sun.misc.SharedSecrets;
 
 /**
@@ -609,6 +610,7 @@ public class HashMap<K,V> extends AbstractMap<K,V>
      *         previously associated <tt>null</tt> with <tt>key</tt>.)
      */
     public V put(K key, V value) {
+        System.out.println("put===============");
         return putVal(hash(key), key, value, false, true);
     }
 

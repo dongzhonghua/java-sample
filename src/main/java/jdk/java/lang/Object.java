@@ -36,8 +36,8 @@ package java.lang;
  */
 public class Object {
 
-    private static native void registerNatives();
-    static {
+    private static native void registerNatives();// 该方法用来注册所有的本地方法
+    static {   // 类实例化之前调用
         registerNatives();
     }
 
