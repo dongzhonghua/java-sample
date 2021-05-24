@@ -707,27 +707,27 @@ public class HashMap<K,V> extends AbstractMap<K,V>
         table = newTab;
         if (oldTab != null) {
             for (int j = 0; j < oldCap; ++j) {
-                Node<K,V> e;
+                Node<K,V> e; // 当前的Node
                 if ((e = oldTab[j]) != null) {
                     oldTab[j] = null;
                     if (e.next == null)
-                        newTab[e.hash & (newCap - 1)] = e;
+                        newTab[e.hash & (newCap - 1)] = e; // 如果不是链表，直接rehash放过去
                     else if (e instanceof TreeNode)
-                        ((TreeNode<K,V>)e).split(this, newTab, j, oldCap);
-                    else { // preserve order
-                        Node<K,V> loHead = null, loTail = null;
-                        Node<K,V> hiHead = null, hiTail = null;
+                        ((TreeNode<K,V>)e).split(this, newTab, j, oldCap); // 红黑树的扩容
+                    else { // preserve order 维护秩序
+                        Node<K,V> loHead = null, loTail = null; // 原来位置的头和尾
+                        Node<K,V> hiHead = null, hiTail = null; // 新的，扩容之后，加上旧的容量位置
                         Node<K,V> next;
                         do {
                             next = e.next;
-                            if ((e.hash & oldCap) == 0) {
+                            if ((e.hash & oldCap) == 0) { // 看hashcode原始容量位数的高一位是0还是1，容量为16就看第五位。
                                 if (loTail == null)
                                     loHead = e;
                                 else
                                     loTail.next = e;
                                 loTail = e;
                             }
-                            else {
+                            else { // 新的位置的链表操作，逻辑都一样
                                 if (hiTail == null)
                                     hiHead = e;
                                 else
@@ -737,11 +737,11 @@ public class HashMap<K,V> extends AbstractMap<K,V>
                         } while ((e = next) != null);
                         if (loTail != null) {
                             loTail.next = null;
-                            newTab[j] = loHead;
+                            newTab[j] = loHead; // 旧的位置
                         }
                         if (hiTail != null) {
                             hiTail.next = null;
-                            newTab[j + oldCap] = hiHead;
+                            newTab[j + oldCap] = hiHead; // 新的位置
                         }
                     }
                 }
