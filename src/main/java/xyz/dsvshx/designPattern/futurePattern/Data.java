@@ -1,4 +1,4 @@
-package xyz.dsvshx.futurePattern;
+package xyz.dsvshx.designPattern.futurePattern;
 
 /**
  * @author dongzhonghua

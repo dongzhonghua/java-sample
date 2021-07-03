@@ -1,4 +1,4 @@
-package xyz.dsvshx.builder;
+package xyz.dsvshx.designPattern.builder;
 
 import lombok.Builder;
 import lombok.Data;

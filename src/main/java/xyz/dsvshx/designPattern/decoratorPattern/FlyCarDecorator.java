@@ -1,4 +1,4 @@
-package xyz.dsvshx.decoratorPattern;
+package xyz.dsvshx.designPattern.decoratorPattern;
 
 public class FlyCarDecorator extends CarDecorator{
     public FlyCarDecorator(Car decoratorCar) {

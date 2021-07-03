@@ -1,4 +1,4 @@
-package xyz.dsvshx.decoratorPattern;
+package xyz.dsvshx.designPattern.decoratorPattern;
 
 class Tesla implements Car {
 

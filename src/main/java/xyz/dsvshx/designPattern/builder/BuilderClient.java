@@ -1,6 +1,6 @@
-package xyz.dsvshx.builder;
+package xyz.dsvshx.designPattern.builder;
 
-import xyz.dsvshx.builder.User.UserBuilder;
+import xyz.dsvshx.designPattern.builder.User.UserBuilder;
 
 /**
  * @author dongzhonghua
